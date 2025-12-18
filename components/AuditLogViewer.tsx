@@ -44,8 +44,9 @@ export const AuditLogViewer: React.FC<AuditLogViewerProps> = ({ logs }) => {
           </div>
        </div>
        
-       <div className="overflow-x-auto flex-1 no-scrollbar transition-colors">
-          <table className="w-full text-[10px] text-left">
+       <div className="flex-1 overflow-y-auto no-scrollbar transition-colors">
+          {/* Desktop Table - Hidden on mobile */}
+          <table className="w-full text-[10px] text-left hidden md:table">
             <thead className="text-brand-hooker dark:text-brand-lightgray/60 font-black uppercase tracking-[0.3em] bg-brand-lightgray/10 dark:bg-white/5 border-b border-brand-lightgray/10 dark:border-white/5 sticky top-0 z-10 backdrop-blur-md transition-colors">
                <tr>
                  <th className="px-8 py-5">Global Timestamp</th>
@@ -92,6 +93,39 @@ export const AuditLogViewer: React.FC<AuditLogViewerProps> = ({ logs }) => {
               )}
             </tbody>
           </table>
+
+          {/* Mobile Card List - Visible only on mobile */}
+          <div className="md:hidden p-4 space-y-3">
+             {filteredLogs.length > 0 ? filteredLogs.map(log => (
+                <div key={log.id} className="bg-brand-lightgray/5 dark:bg-white/5 border border-brand-lightgray/10 dark:border-white/5 p-4 rounded-2xl space-y-3">
+                   <div className="flex justify-between items-start">
+                      <span className="px-2 py-1 rounded-md border bg-white dark:bg-white/5 border-brand-lightgray/20 dark:border-white/10 font-black text-[9px] text-brand-jungle dark:text-brand-pistachio uppercase tracking-widest">
+                         {log.action}
+                      </span>
+                      <div className="flex items-center gap-1 text-[9px] text-brand-hooker dark:text-brand-lightgray/40 font-bold">
+                         <Clock size={10} />
+                         {new Date(log.timestamp).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
+                      </div>
+                   </div>
+                   
+                   <div>
+                      <div className="font-black text-brand-jungle dark:text-white uppercase tracking-tight text-xs">{log.actorName}</div>
+                      <div className="text-[9px] font-bold text-brand-hooker dark:text-brand-lightgray/20 opacity-60 uppercase tracking-widest mt-0.5">ID: {log.actorId}</div>
+                   </div>
+
+                   <div className="pt-2 border-t border-brand-lightgray/10 dark:border-white/5">
+                      <p className="text-[10px] text-brand-hooker dark:text-brand-lightgray/60 font-medium italic leading-relaxed">
+                         "{log.details}"
+                      </p>
+                      <p className="text-[9px] font-mono font-bold text-brand-hooker dark:text-brand-lightgray/40 tracking-widest mt-2">{log.resourceId}</p>
+                   </div>
+                </div>
+             )) : (
+                <div className="text-center py-10 opacity-40">
+                   <p className="text-[10px] font-black uppercase tracking-[0.4em] text-brand-lightgray dark:text-white/20">No Logs Found</p>
+                </div>
+             )}
+          </div>
        </div>
        
        <div className="p-6 border-t border-brand-lightgray/10 dark:border-white/5 bg-brand-lightgray/5 dark:bg-white/5 text-center transition-colors shrink-0">

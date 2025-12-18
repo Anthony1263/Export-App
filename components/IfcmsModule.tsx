@@ -62,7 +62,7 @@ export const IfcmsModule: React.FC<IfcmsProps> = ({ user, loans, onAddLoan, onSh
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div 
           onClick={() => setShowScoreDetails(!showScoreDetails)}
-          className="bg-white dark:bg-brand-darksurface p-8 rounded-[3rem] shadow-brand border border-brand-lightgray/30 dark:border-white/10 flex flex-col items-center justify-center relative overflow-hidden transition-all cursor-pointer hover:border-brand-pistachio active:scale-[0.98]"
+          className="bg-white/70 dark:bg-brand-darksurface/70 backdrop-blur-md p-8 rounded-[3rem] shadow-brand border border-brand-lightgray/30 dark:border-white/10 flex flex-col items-center justify-center relative overflow-hidden transition-all cursor-pointer hover:border-brand-pistachio active:scale-[0.98]"
         >
            <div className="absolute top-6 right-6 text-brand-hooker/40 dark:text-white/20">
              {showScoreDetails ? <X size={18} /> : <Info size={18} />}
@@ -115,7 +115,7 @@ export const IfcmsModule: React.FC<IfcmsProps> = ({ user, loans, onAddLoan, onSh
            )}
         </div>
 
-        <div className="lg:col-span-2 bg-white dark:bg-brand-darksurface p-8 rounded-[3rem] shadow-brand border border-brand-lightgray/30 dark:border-white/10 transition-colors">
+        <div className="lg:col-span-2 bg-white/70 dark:bg-brand-darksurface/70 backdrop-blur-md p-8 rounded-[3rem] shadow-brand border border-brand-lightgray/30 dark:border-white/10 transition-colors">
            <div className="flex justify-between items-center mb-8">
                 <h3 className="font-black text-brand-jungle dark:text-white text-lg uppercase tracking-tight transition-colors">Score History</h3>
                 <span className="text-[10px] text-brand-hooker dark:text-brand-lightgray/60 font-black px-4 py-1.5 bg-brand-lightgray/10 dark:bg-white/5 rounded-full uppercase tracking-widest transition-colors">Credit History</span>
@@ -145,7 +145,7 @@ export const IfcmsModule: React.FC<IfcmsProps> = ({ user, loans, onAddLoan, onSh
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <div className="bg-white dark:bg-brand-darksurface p-8 rounded-[3rem] shadow-brand border border-brand-lightgray/30 dark:border-white/10 transition-colors">
+        <div className="bg-white/70 dark:bg-brand-darksurface/70 backdrop-blur-md p-8 rounded-[3rem] shadow-brand border border-brand-lightgray/30 dark:border-white/10 transition-colors">
           <h3 className="font-black text-brand-jungle dark:text-white text-lg uppercase tracking-tight mb-8 transition-colors">Loan Applications</h3>
           <div className="space-y-4">
             {loans.length > 0 ? loans.map(loan => (
@@ -178,7 +178,7 @@ export const IfcmsModule: React.FC<IfcmsProps> = ({ user, loans, onAddLoan, onSh
           </div>
         </div>
 
-        <div className="bg-brand-jungle dark:bg-brand-jungle/80 p-8 rounded-[3rem] shadow-brand border border-white/5 relative overflow-hidden transition-colors">
+        <div className="bg-brand-jungle/90 dark:bg-brand-jungle/80 backdrop-blur-md p-8 rounded-[3rem] shadow-brand border border-white/5 relative overflow-hidden transition-colors">
           <div className="absolute top-0 right-0 w-64 h-64 bg-brand-pistachio/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
           <h3 className="font-black text-white text-lg uppercase tracking-tight mb-8 relative z-10 transition-colors">Insights</h3>
           <div className="space-y-4 relative z-10">
@@ -206,10 +206,10 @@ export const IfcmsModule: React.FC<IfcmsProps> = ({ user, loans, onAddLoan, onSh
         </div>
       </div>
 
-      {/* New Application Modal */}
+      {/* New Application Modal - Stronger Glass */}
       {isModalOpen && (
         <div className="fixed inset-0 bg-brand-jungle/60 z-50 flex items-center justify-center p-6 backdrop-blur-md animate-fade-in">
-          <div className="bg-white dark:bg-brand-darksurface rounded-[3rem] shadow-2xl w-full max-w-md overflow-hidden animate-modal-in border border-brand-lightgray/20 dark:border-white/10 transition-colors">
+          <div className="bg-white/80 dark:bg-brand-darksurface/80 backdrop-blur-xl rounded-[3rem] shadow-2xl w-full max-w-md overflow-hidden animate-modal-in border border-brand-lightgray/20 dark:border-white/10 transition-colors">
             <div className="px-10 py-8 border-b border-brand-lightgray/10 dark:border-white/5 flex justify-between items-center bg-brand-lightgray/5 dark:bg-white/5 transition-colors">
               <h3 className="font-black text-brand-jungle dark:text-white text-xl uppercase tracking-tight transition-colors">New Application</h3>
               <button onClick={() => setIsModalOpen(false)} className="text-brand-hooker dark:text-brand-lightgray/60 hover:text-brand-jungle dark:hover:text-white transition-colors">
@@ -263,7 +263,7 @@ export const IfcmsModule: React.FC<IfcmsProps> = ({ user, loans, onAddLoan, onSh
       {/* View Loan Detail Modal */}
       {selectedLoan && (
         <div className="fixed inset-0 bg-brand-jungle/60 z-[150] flex items-center justify-center p-6 backdrop-blur-md animate-fade-in">
-           <div className="bg-white dark:bg-brand-darksurface rounded-[3rem] shadow-2xl w-full max-w-lg overflow-hidden border border-brand-lightgray/20 dark:border-white/10 animate-modal-in transition-colors">
+           <div className="bg-white/80 dark:bg-brand-darksurface/80 backdrop-blur-xl rounded-[3rem] shadow-2xl w-full max-w-lg overflow-hidden border border-brand-lightgray/20 dark:border-white/10 animate-modal-in transition-colors">
               <div className="p-8 border-b border-brand-lightgray/10 dark:border-white/5 flex justify-between items-center bg-brand-lightgray/5 dark:bg-white/5">
                  <div className="flex items-center gap-4">
                     <div className="w-12 h-12 bg-brand-jungle dark:bg-brand-pistachio text-brand-pistachio dark:text-brand-jungle rounded-2xl flex items-center justify-center shadow-lg">

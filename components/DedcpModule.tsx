@@ -89,7 +89,7 @@ export const DedcpModule: React.FC<DedcpProps> = ({ documents, onAddDocument, on
             setFilterStatus('All');
             onShowToast(isRegistryView ? "Displaying full national registry." : "Displaying all active trade protocols.", "info");
           }}
-          className={`p-6 rounded-2xl shadow-brand border flex items-center gap-6 cursor-pointer transition-all active:scale-[0.98] ${filterStatus === 'All' ? 'bg-brand-jungle dark:bg-brand-pistachio text-white dark:text-brand-jungle border-brand-jungle' : 'bg-white dark:bg-brand-darksurface border-brand-lightgray/30 dark:border-white/10 text-brand-jungle dark:text-white hover:border-brand-pistachio'}`}
+          className={`p-6 rounded-2xl shadow-brand border flex items-center gap-6 cursor-pointer transition-all active:scale-[0.98] ${filterStatus === 'All' ? 'bg-brand-jungle/90 dark:bg-brand-pistachio/90 backdrop-blur-md text-white dark:text-brand-jungle border-brand-jungle' : 'bg-white/70 dark:bg-brand-darksurface/70 backdrop-blur-md border-brand-lightgray/30 dark:border-white/10 text-brand-jungle dark:text-white hover:border-brand-pistachio'}`}
         >
           <div className={`w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 shadow-lg ${filterStatus === 'All' ? 'bg-white/10 text-white dark:text-brand-jungle' : 'bg-brand-jungle dark:bg-brand-pistachio/10 text-brand-pistachio'}`}>
             <FileText size={24} />
@@ -106,7 +106,7 @@ export const DedcpModule: React.FC<DedcpProps> = ({ documents, onAddDocument, on
             setFilterStatus('Approved');
             onShowToast("Filtering for verified manifests.", "success");
           }}
-          className={`p-6 rounded-2xl shadow-brand border flex items-center gap-6 cursor-pointer transition-all active:scale-[0.98] ${filterStatus === 'Approved' ? 'bg-brand-jungle dark:bg-brand-pistachio text-white dark:text-brand-jungle border-brand-jungle' : 'bg-white dark:bg-brand-darksurface border-brand-lightgray/30 dark:border-white/10 text-brand-jungle dark:text-white hover:border-brand-pistachio'}`}
+          className={`p-6 rounded-2xl shadow-brand border flex items-center gap-6 cursor-pointer transition-all active:scale-[0.98] ${filterStatus === 'Approved' ? 'bg-brand-jungle/90 dark:bg-brand-pistachio/90 backdrop-blur-md text-white dark:text-brand-jungle border-brand-jungle' : 'bg-white/70 dark:bg-brand-darksurface/70 backdrop-blur-md border-brand-lightgray/30 dark:border-white/10 text-brand-jungle dark:text-white hover:border-brand-pistachio'}`}
         >
           <div className={`w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 shadow-lg ${filterStatus === 'Approved' ? 'bg-white/10 text-white dark:text-brand-jungle' : 'bg-brand-pistachio text-brand-jungle'}`}>
             <ShieldCheck size={24} />
@@ -122,7 +122,7 @@ export const DedcpModule: React.FC<DedcpProps> = ({ documents, onAddDocument, on
           onClick={() => {
             onShowToast("Analyzing mean transit protocols. All nodes optimal.", "info");
           }}
-          className="bg-white dark:bg-brand-darksurface p-6 rounded-2xl shadow-brand border border-brand-lightgray/30 dark:border-white/10 flex items-center gap-6 cursor-pointer transition-all hover:border-brand-pistachio active:scale-[0.98]"
+          className="bg-white/70 dark:bg-brand-darksurface/70 backdrop-blur-md p-6 rounded-2xl shadow-brand border border-brand-lightgray/30 dark:border-white/10 flex items-center gap-6 cursor-pointer transition-all hover:border-brand-pistachio active:scale-[0.98]"
         >
           <div className="w-14 h-14 bg-brand-pewter text-white rounded-2xl flex items-center justify-center shrink-0 shadow-lg">
             <RefreshCw size={24} />
@@ -134,7 +134,7 @@ export const DedcpModule: React.FC<DedcpProps> = ({ documents, onAddDocument, on
         </div>
       </div>
 
-      <div className="bg-white dark:bg-brand-darksurface rounded-[2rem] shadow-brand border border-brand-lightgray/30 dark:border-white/10 overflow-hidden transition-colors duration-300">
+      <div className="bg-white/70 dark:bg-brand-darksurface/70 backdrop-blur-md rounded-[2rem] shadow-brand border border-brand-lightgray/30 dark:border-white/10 overflow-hidden transition-colors duration-300">
         <div className="p-6 md:p-8 border-b border-brand-lightgray/10 dark:border-white/5 flex flex-col sm:flex-row justify-between sm:items-center gap-4 bg-brand-lightgray/5 dark:bg-white/5 transition-colors">
           <div className="flex items-center gap-3 w-full sm:w-auto">
              <div className="relative w-full sm:w-72">
@@ -249,7 +249,7 @@ export const DedcpModule: React.FC<DedcpProps> = ({ documents, onAddDocument, on
       {/* Initialize Modal (Only for Exporters) */}
       {isModalOpen && isExporter && (
         <div className="fixed inset-0 bg-brand-jungle/60 z-[150] flex items-center justify-center p-6 backdrop-blur-md animate-fade-in">
-          <div className="bg-white dark:bg-brand-darksurface rounded-[3rem] shadow-2xl w-full max-w-lg overflow-hidden border border-brand-lightgray/20 dark:border-white/10 animate-modal-in transition-colors duration-300">
+          <div className="bg-white/80 dark:bg-brand-darksurface/80 backdrop-blur-xl rounded-[3rem] shadow-2xl w-full max-w-lg overflow-hidden border border-brand-lightgray/20 dark:border-white/10 animate-modal-in transition-colors duration-300">
             <div className="px-10 py-8 border-b border-brand-lightgray/10 dark:border-white/5 flex justify-between items-center bg-brand-lightgray/5 dark:bg-white/5 transition-colors">
               <h3 className="font-black text-brand-jungle dark:text-white text-xl uppercase tracking-tight transition-colors">Create Export Shipment</h3>
               <button onClick={() => setIsModalOpen(false)} className="text-brand-hooker dark:text-brand-lightgray/60 hover:text-brand-jungle dark:hover:text-white transition-colors">

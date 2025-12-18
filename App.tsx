@@ -281,7 +281,7 @@ export function App() {
     };
     await db.loans.create(newLoan);
     setLoans(prev => [newLoan, ...prev]);
-    addNotification(`Financial application ${newLoan.id} for GH₵ ${newLoan.amount.toLocaleString()} is now in the vetting queue.`, 'finance');
+    // Self-action: Removed addNotification to prevent redundancy. Toast serves as feedback.
     await pushAudit('FINANCE_APPLY', newLoan.id, `Application for GH₵ ${newLoan.amount.toLocaleString()} submitted to ${newLoan.institution}.`);
     showToast('Credit application synchronized.', 'success');
     setIsProcessing(false);
@@ -293,11 +293,7 @@ export function App() {
     await db.loans.update(loanId, { status: decision, decisionNotes: notes });
     setLoans(prev => prev.map(l => l.id === loanId ? { ...l, status: decision, decisionNotes: notes } : l));
     
-    const targetLoan = loans.find(l => l.id === loanId);
-    if (targetLoan) {
-        const applicant = USERS.find(u => u.id === targetLoan.userId);
-        addNotification(`Protocol finalized: ${decision} loan for ${applicant?.companyName || 'Unknown Entity'}.`, 'finance');
-    }
+    // Self-action: Removed notification to current user (the bank officer).
     
     await pushAudit('FINANCE_DECISION', loanId, `Loan ${decision.toUpperCase()} by officer ${currentUser?.name}. Notes: ${notes}`);
     showToast(`Decision protocol concluded.`, 'success');
@@ -322,7 +318,7 @@ export function App() {
     };
     await db.documents.create(newDoc);
     setDocuments(prev => [newDoc, ...prev]);
-    addNotification(`Trade manifest ${newDoc.reference} distributed to ${required.length} regulatory nodes.`, 'trade');
+    // Self-action: Removed addNotification.
     await pushAudit('TRADE_MANIFEST_NEW', newDoc.reference, `New shipment manifest initialized for ${newDoc.product} to ${newDoc.destination}.`);
     showToast(`Manifest ${newDoc.reference} transmitted.`, 'success');
     setIsProcessing(false);
@@ -350,7 +346,7 @@ export function App() {
     await db.documents.update(docId, updates);
     setDocuments(prev => prev.map(d => d.id === docId ? { ...d, ...updates } : d));
     
-    addNotification(`Agency Clearance: ${agency} has marked manifest ${doc.reference} as ${decision.toUpperCase()}.`, 'trade');
+    // Self-action: Removed addNotification.
     await pushAudit('GOV_AUTH', doc.reference, `${agency} decision: ${decision}. Action taken by ${currentUser.name}.`);
     showToast(`${agency} authorization recorded.`, 'success');
     setIsProcessing(false);
@@ -364,7 +360,7 @@ export function App() {
     };
     await db.broadcasts.create(newB);
     setBroadcasts(prev => [newB, ...prev]);
-    addNotification(`Market Pulse: HQ has issued a strategic broadcast concerning ${broadcast.type.toUpperCase()}.`, 'market');
+    // Removed addNotification: Sender doesn't need a notification about what they just sent.
     await pushAudit('HQ_BROADCAST', newB.id, `Global transmission sent: ${broadcast.content.substring(0, 30)}...`);
     showToast('Strategic broadcast transmitted.', 'success');
   };
@@ -376,7 +372,7 @@ export function App() {
       localStorage.setItem('gepa_connected_buyers', JSON.stringify(next));
       return next;
     });
-    addNotification(`Market Link Established: Real-time demand sync initialized with ${name}.`, 'market');
+    // Removed addNotification: Use Toast only.
     showToast(`Transmission node linked with ${name}.`, 'success');
     pushAudit('BUYER_CONNECT', name, `Established secure handshake with international buyer node: ${name}`);
   };
@@ -465,7 +461,7 @@ export function App() {
           await db.tickets.update(id, { status: 'Resolved' });
           setTickets(prev => prev.map(t => t.id === id ? { ...t, status: 'Resolved' } : t));
           showToast(`Resolved: Ticket ${id}`, 'success');
-          addNotification(`Support Protocol Finalized: Incident ${id} resolved. Note: "${note}"`, 'system');
+          // Self-action: Removed addNotification
           pushAudit('SUPPORT_RESOLVE', id, `Ticket resolved by ${currentUser.name}. Note: ${note}`);
       }} onAddTicket={async (t) => {
         if (!currentUser) return;
@@ -473,7 +469,7 @@ export function App() {
         await db.tickets.create(nt);
         setTickets(prev => [nt, ...prev]);
         showToast('Support ticket logged.', 'success');
-        addNotification(`New support inquiry transmitted: ${t.subject}. Ref: ${nt.id}`, 'system');
+        // Self-action: Removed addNotification
       }} />}
     </Layout>
   );

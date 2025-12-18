@@ -84,7 +84,7 @@ export const RemipModule: React.FC<RemipProps> = ({ onShowToast, connectedBuyers
       </div>
 
       {/* AI Assistant Section */}
-      <div className="bg-white dark:bg-brand-darksurface p-8 rounded-[2rem] border border-brand-lightgray/30 dark:border-white/10 shadow-brand overflow-hidden relative transition-colors">
+      <div className="bg-white/70 dark:bg-brand-darksurface/70 backdrop-blur-md p-8 rounded-[2rem] border border-brand-lightgray/30 dark:border-white/10 shadow-brand overflow-hidden relative transition-colors">
         <div className="relative z-10">
           <div className="flex items-center gap-4 mb-6">
             <div className="w-12 h-12 bg-brand-jungle dark:bg-brand-pistachio text-brand-pistachio dark:text-brand-jungle rounded-2xl flex items-center justify-center shadow-lg transition-colors">
@@ -143,7 +143,7 @@ export const RemipModule: React.FC<RemipProps> = ({ onShowToast, connectedBuyers
 
       {/* Pulse and Directory Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2 bg-white dark:bg-brand-darksurface p-8 rounded-[2rem] shadow-brand border border-brand-lightgray/30 dark:border-white/10 transition-colors">
+        <div className="lg:col-span-2 bg-white/70 dark:bg-brand-darksurface/70 backdrop-blur-md p-8 rounded-[2rem] shadow-brand border border-brand-lightgray/30 dark:border-white/10 transition-colors">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-10">
             <h3 className="font-black text-brand-jungle dark:text-white text-lg uppercase tracking-tight flex items-center gap-3 transition-colors">
                 <div className="w-2 h-2 bg-brand-pistachio rounded-full shadow-pistachio-glow"></div>
@@ -170,7 +170,7 @@ export const RemipModule: React.FC<RemipProps> = ({ onShowToast, connectedBuyers
           </div>
         </div>
 
-        <div className="bg-white dark:bg-brand-darksurface p-8 rounded-[2rem] shadow-brand border border-brand-lightgray/30 dark:border-white/10 flex flex-col h-full transition-colors">
+        <div className="bg-white/70 dark:bg-brand-darksurface/70 backdrop-blur-md p-8 rounded-[2rem] shadow-brand border border-brand-lightgray/30 dark:border-white/10 flex flex-col h-full transition-colors">
           <div className="flex items-center justify-between mb-8">
              <h3 className="font-black text-brand-jungle dark:text-white text-lg uppercase tracking-tight transition-colors">Buyer Directory</h3>
              <div className="p-2 bg-brand-pistachio/10 text-brand-pistachio rounded-xl"><Globe size={20} /></div>

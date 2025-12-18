@@ -114,18 +114,18 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeModule, onNavigate, isOp
   return (
     <>
       {isOpen && (
-        <div className="fixed inset-0 bg-brand-jungle/60 z-40 md:hidden transition-opacity backdrop-blur-sm" onClick={onClose} />
+        <div className="fixed inset-0 bg-brand-jungle/60 backdrop-blur-sm z-40 md:hidden transition-opacity" onClick={onClose} />
       )}
 
       <div className={`
-        w-72 bg-brand-jungle text-white h-screen fixed left-0 top-0 flex flex-col z-50
+        w-72 bg-brand-jungle/95 backdrop-blur-xl text-white h-screen fixed left-0 top-0 flex flex-col z-50
         transition-transform duration-500 ease-in-out border-r border-white/5 dark:border-white/10
         ${isOpen ? 'translate-x-0' : '-translate-x-full'}
         md:translate-x-0
       `}>
         <div className="p-10 flex items-center justify-between shrink-0">
           <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center p-2 border border-white/10 shadow-brand">
+            <div className="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center p-2 border border-white/10 shadow-brand backdrop-blur-sm">
                <GepaLogo size={32} />
             </div>
             <div>
@@ -140,7 +140,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeModule, onNavigate, isOp
           {renderNavItems()}
         </nav>
 
-        <div className="p-8 border-t border-white/5 space-y-2 bg-black/5 shrink-0">
+        <div className="p-8 border-t border-white/5 space-y-2 bg-black/10 shrink-0 backdrop-blur-sm">
           <div onClick={() => handleNavClick('settings')} className={navItemClass('settings')}>
             <IllusSettings size={20} />
             <span className="text-sm font-semibold">Profile</span>

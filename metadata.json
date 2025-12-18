@@ -1,8 +1,5 @@
 {
   "name": "Fi of GEPA Export Portal - Enterprise Node",
   "description": "The Ghana Export Promotion Authority (GEPA) Integrated Export System. A unified platform featuring REMIP (Market Intelligence), IFCMS (Financing), and DEDCP (Documentation & Compliance) for Ghanaian exporters.",
-  "requestFramePermissions": [
-    "camera",
-    "microphone"
-  ]
+  "requestFramePermissions": []
 }

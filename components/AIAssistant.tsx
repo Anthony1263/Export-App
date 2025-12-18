@@ -83,7 +83,7 @@ export const AIAssistant: React.FC<AIAssistantProps> = ({ isOpen, onToggle, user
       </button>
 
       {isOpen && (
-        <div className="fixed bottom-24 right-6 w-80 sm:w-96 h-[550px] bg-white dark:bg-brand-darksurface rounded-[2.5rem] shadow-brand border border-brand-lightgray/20 dark:border-white/10 z-[100] flex flex-col overflow-hidden animate-slide-up pointer-events-auto transition-colors duration-300">
+        <div className="fixed bottom-24 right-6 w-80 sm:w-96 h-[550px] bg-white/80 dark:bg-brand-darksurface/80 backdrop-blur-xl rounded-[2.5rem] shadow-brand border border-brand-lightgray/20 dark:border-white/10 z-[100] flex flex-col overflow-hidden animate-slide-up pointer-events-auto transition-colors duration-300">
           <div className="bg-brand-jungle p-6 text-white flex items-center justify-between border-b border-white/5">
              <div className="flex items-center gap-4">
                 <div className="w-10 h-10 bg-brand-pistachio rounded-2xl flex items-center justify-center shadow-lg">
@@ -130,7 +130,7 @@ export const AIAssistant: React.FC<AIAssistantProps> = ({ isOpen, onToggle, user
              )}
           </div>
 
-          <div className="p-4 bg-white dark:bg-brand-darksurface border-t border-brand-lightgray/10 dark:border-white/5">
+          <div className="p-4 bg-white/70 dark:bg-brand-darksurface/70 backdrop-blur-md border-t border-brand-lightgray/10 dark:border-white/5">
              <form onSubmit={handleSend} className="relative">
                 <input 
                   type="text" 

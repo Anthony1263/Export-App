@@ -69,8 +69,8 @@ export const DashboardHome: React.FC<DashboardHomeProps> = ({ onNavigate, user, 
 
   return (
     <div className="space-y-8 animate-fade-in pb-20">
-      {/* Welcome Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 bg-white dark:bg-brand-darksurface p-8 rounded-[2rem] border border-brand-lightgray/30 dark:border-white/10 shadow-brand relative overflow-hidden transition-colors group">
+      {/* Welcome Header - Glass */}
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 bg-white/70 dark:bg-brand-darksurface/70 backdrop-blur-md p-8 rounded-[2rem] border border-brand-lightgray/30 dark:border-white/10 shadow-brand relative overflow-hidden transition-colors group">
         <div className="absolute top-0 right-0 w-64 h-64 bg-brand-pistachio/5 rounded-full blur-3xl -mr-16 -mt-16 transition-colors opacity-0 group-hover:opacity-100 duration-1000"></div>
         <div className="relative z-10">
           <div className="flex items-center gap-3 mb-2">
@@ -102,7 +102,7 @@ export const DashboardHome: React.FC<DashboardHomeProps> = ({ onNavigate, user, 
         {/* Credit Health */}
         <div 
            onClick={() => onNavigate('ifcms')}
-           className="bg-white dark:bg-brand-darksurface p-8 rounded-[2rem] border border-brand-lightgray/30 dark:border-white/10 shadow-soft cursor-pointer hover:border-brand-jungle dark:hover:border-brand-pistachio transition-all group group-active:scale-[0.98] relative overflow-hidden"
+           className="bg-white/70 dark:bg-brand-darksurface/70 backdrop-blur-md p-8 rounded-[2rem] border border-brand-lightgray/30 dark:border-white/10 shadow-soft cursor-pointer hover:border-brand-jungle dark:hover:border-brand-pistachio transition-all group group-active:scale-[0.98] relative overflow-hidden"
         >
           <div className="flex justify-between items-start mb-8 relative z-10">
             <div className="w-14 h-14 bg-brand-jungle dark:bg-white/10 text-brand-pistachio rounded-2xl flex items-center justify-center shadow-lg transform group-hover:-rotate-3 transition-transform">
@@ -126,7 +126,7 @@ export const DashboardHome: React.FC<DashboardHomeProps> = ({ onNavigate, user, 
         {/* Regulatory Load */}
         <div 
           onClick={() => onNavigate('dedcp')}
-          className="bg-white dark:bg-brand-darksurface p-8 rounded-[2rem] border border-brand-lightgray/30 dark:border-white/10 shadow-soft cursor-pointer hover:border-brand-jungle dark:hover:border-brand-pistachio transition-all group group-active:scale-[0.98] relative overflow-hidden"
+          className="bg-white/70 dark:bg-brand-darksurface/70 backdrop-blur-md p-8 rounded-[2rem] border border-brand-lightgray/30 dark:border-white/10 shadow-soft cursor-pointer hover:border-brand-jungle dark:hover:border-brand-pistachio transition-all group group-active:scale-[0.98] relative overflow-hidden"
         >
           <div className="flex justify-between items-start mb-8 relative z-10">
             <div className="w-14 h-14 bg-brand-pewter text-white rounded-2xl flex items-center justify-center shadow-lg transform group-hover:rotate-3 transition-transform">
@@ -151,7 +151,7 @@ export const DashboardHome: React.FC<DashboardHomeProps> = ({ onNavigate, user, 
         {/* Market Momentum */}
         <div 
           onClick={() => onNavigate('remip')}
-          className="bg-brand-jungle dark:bg-brand-jungle/80 p-8 rounded-[2rem] shadow-brand cursor-pointer hover:shadow-2xl transition-all group relative overflow-hidden group-active:scale-[0.98] border border-white/5"
+          className="bg-brand-jungle/90 dark:bg-brand-jungle/80 backdrop-blur-md p-8 rounded-[2rem] shadow-brand cursor-pointer hover:shadow-2xl transition-all group relative overflow-hidden group-active:scale-[0.98] border border-white/5"
         >
           <div className="absolute top-0 right-0 w-64 h-64 bg-brand-pistachio/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/4 pointer-events-none group-hover:bg-brand-pistachio/10 transition-colors"></div>
           <div className="flex justify-between items-start mb-8 relative z-10">
@@ -202,7 +202,7 @@ export const DashboardHome: React.FC<DashboardHomeProps> = ({ onNavigate, user, 
                    <button 
                      key={i} 
                      onClick={() => onNavigate(btn.mod)} 
-                     className="bg-white dark:bg-brand-darksurface p-6 rounded-[2rem] border border-brand-lightgray/30 dark:border-white/10 shadow-brand hover:border-brand-jungle dark:hover:border-brand-pistachio transition-all group text-left flex flex-col justify-between aspect-square active:scale-[0.96]"
+                     className="bg-white/70 dark:bg-brand-darksurface/70 backdrop-blur-md p-6 rounded-[2rem] border border-brand-lightgray/30 dark:border-white/10 shadow-brand hover:border-brand-jungle dark:hover:border-brand-pistachio transition-all group text-left flex flex-col justify-between aspect-square active:scale-[0.96]"
                    >
                      <div className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-all ${btn.bg} group-hover:scale-110 shadow-sm`}>
                        {btn.icon}
@@ -213,7 +213,7 @@ export const DashboardHome: React.FC<DashboardHomeProps> = ({ onNavigate, user, 
                </div>
             </div>
             
-            <div className="bg-white dark:bg-brand-darksurface p-8 rounded-[2rem] border border-brand-lightgray/30 dark:border-white/10 shadow-soft transition-colors">
+            <div className="bg-white/70 dark:bg-brand-darksurface/70 backdrop-blur-md p-8 rounded-[2rem] border border-brand-lightgray/30 dark:border-white/10 shadow-soft transition-colors">
                <div className="flex items-center gap-3 mb-6">
                   <div className="w-10 h-10 bg-brand-lightgray/20 dark:bg-white/5 text-brand-jungle dark:text-white rounded-xl flex items-center justify-center">
                      <Clock size={20} />
@@ -251,7 +251,7 @@ export const DashboardHome: React.FC<DashboardHomeProps> = ({ onNavigate, user, 
           </div>
 
           {/* System Status Node */}
-          <div className="lg:col-span-4 bg-white dark:bg-brand-darksurface p-8 rounded-[2rem] border border-brand-lightgray/30 dark:border-white/10 h-fit shadow-brand transition-colors sticky top-24">
+          <div className="lg:col-span-4 bg-white/70 dark:bg-brand-darksurface/70 backdrop-blur-md p-8 rounded-[2rem] border border-brand-lightgray/30 dark:border-white/10 h-fit shadow-brand transition-colors sticky top-24">
              <div className="flex items-center gap-4 mb-8">
                 <div className="w-12 h-12 bg-brand-jungle dark:bg-brand-pistachio text-brand-pistachio dark:text-brand-jungle rounded-2xl flex items-center justify-center shadow-lg animate-pulse-slow">
                    <Activity size={24} />

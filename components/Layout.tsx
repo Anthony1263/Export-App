@@ -95,17 +95,33 @@ export const Layout: React.FC<LayoutProps> = ({
   };
 
   const handleNotificationClick = (n: Notification) => {
-    // Logic to route based on notification content/type
-    if (n.type === 'finance' || n.text.toLowerCase().includes('loan')) {
-      onNavigate('ifcms');
-    } else if (n.type === 'trade' || n.text.toLowerCase().includes('manifest')) {
-      onNavigate('dedcp');
-    } else if (n.type === 'market') {
-      onNavigate('remip');
-    } else if (n.type === 'system') {
-      onNavigate('dashboard');
-    }
     setShowNotifications(false);
+    
+    // Robust switch for routing based on type
+    switch (n.type) {
+      case 'finance':
+        onNavigate('ifcms');
+        break;
+      case 'trade':
+        // Government agents work from Dashboard for approvals, others go to Documents
+        if (currentUser.role === 'government') {
+          onNavigate('dashboard');
+        } else {
+          onNavigate('dedcp');
+        }
+        break;
+      case 'market':
+        onNavigate('remip');
+        break;
+      case 'system':
+        onNavigate('dashboard');
+        break;
+      default:
+        // Fallback logic
+        if (n.text.toLowerCase().includes('loan')) onNavigate('ifcms');
+        else if (n.text.toLowerCase().includes('manifest')) onNavigate('dedcp');
+        else onNavigate('dashboard');
+    }
   };
 
   return (
@@ -119,7 +135,7 @@ export const Layout: React.FC<LayoutProps> = ({
       />
       
       <div className="flex-1 md:ml-72 flex flex-col transition-all duration-300 w-full relative">
-        <header className="h-20 md:h-24 sticky top-0 z-30 px-6 md:px-10 flex items-center justify-between shrink-0 bg-white dark:bg-brand-darkbg border-b border-brand-lightgray/30 dark:border-white/10 transition-colors duration-300">
+        <header className="h-20 md:h-24 sticky top-0 z-30 px-6 md:px-10 flex items-center justify-between shrink-0 bg-white/80 dark:bg-brand-darkbg/80 backdrop-blur-xl border-b border-brand-lightgray/30 dark:border-white/10 transition-colors duration-300 supports-[backdrop-filter]:bg-white/60">
           <div className="flex items-center gap-4">
             <button 
               className="md:hidden p-3 -ml-3 text-brand-jungle dark:text-white hover:bg-brand-jungle/5 dark:hover:bg-white/5 rounded-2xl shrink-0"
@@ -156,7 +172,7 @@ export const Layout: React.FC<LayoutProps> = ({
               </button>
 
               {showNotifications && (
-                <div className="absolute right-0 mt-4 w-72 md:w-80 bg-white dark:bg-brand-darksurface rounded-3xl shadow-brand border border-brand-lightgray/20 dark:border-white/10 overflow-hidden z-50 animate-modal-in">
+                <div className="absolute right-0 mt-4 w-72 md:w-80 bg-white/90 dark:bg-brand-darksurface/90 backdrop-blur-xl rounded-3xl shadow-brand border border-brand-lightgray/20 dark:border-white/10 overflow-hidden z-[200] animate-modal-in">
                   <div className="p-6 border-b border-brand-lightgray/10 dark:border-white/5 flex justify-between items-center bg-brand-lightgray/5 dark:bg-white/5">
                     <h3 className="font-black text-xs uppercase tracking-widest text-brand-jungle dark:text-white">Security Feed</h3>
                     <button onClick={() => notifications.forEach(n => n.isNew = false)} className="text-[10px] text-brand-hooker dark:text-brand-lightgray hover:text-brand-jungle dark:hover:text-white font-black uppercase tracking-widest">Mark Read</button>
@@ -190,7 +206,7 @@ export const Layout: React.FC<LayoutProps> = ({
             <div className="relative" ref={userRef}>
               <button 
                 onClick={() => setShowUserMenu(!showUserMenu)}
-                className={`flex items-center gap-3 p-1.5 rounded-2xl border transition-all ${showUserMenu ? 'bg-white dark:bg-white/10 border-brand-jungle dark:border-brand-pistachio' : 'bg-brand-lightgray/5 dark:bg-white/5 border-brand-lightgray/30 dark:border-white/10 hover:border-brand-jungle dark:hover:border-brand-pistachio'}`}
+                className={`flex items-center gap-3 p-1.5 rounded-2xl border transition-all ${showUserMenu ? 'bg-white/50 dark:bg-white/10 border-brand-jungle dark:border-brand-pistachio' : 'bg-brand-lightgray/5 dark:bg-white/5 border-brand-lightgray/30 dark:border-white/10 hover:border-brand-jungle dark:hover:border-brand-pistachio'}`}
               >
                 <div className="w-8 h-8 md:w-10 md:h-10 bg-brand-jungle dark:bg-brand-pistachio text-white dark:text-brand-jungle rounded-xl flex items-center justify-center p-1 shadow-brand">
                    <GepaLogo size={32} />
@@ -202,7 +218,7 @@ export const Layout: React.FC<LayoutProps> = ({
               </button>
 
               {showUserMenu && (
-                <div className="absolute right-0 mt-4 w-64 bg-white dark:bg-brand-darksurface rounded-3xl shadow-brand border border-brand-lightgray/20 dark:border-white/10 overflow-hidden z-50 py-2 animate-modal-in">
+                <div className="absolute right-0 mt-4 w-64 bg-white/90 dark:bg-brand-darksurface/90 backdrop-blur-xl rounded-3xl shadow-brand border border-brand-lightgray/20 dark:border-white/10 overflow-hidden z-[200] py-2 animate-modal-in">
                   <div className="px-8 py-6 border-b border-brand-lightgray/10 dark:border-white/5 mb-2 bg-brand-lightgray/5 dark:bg-white/5">
                     <p className="text-sm font-black text-brand-jungle dark:text-white uppercase tracking-wider">{currentUser.name}</p>
                     <p className="text-[10px] font-bold text-brand-hooker dark:text-brand-lightgray/60 mt-1 uppercase tracking-[0.2em]">{currentUser.role.replace('_', ' ')}</p>
@@ -226,9 +242,9 @@ export const Layout: React.FC<LayoutProps> = ({
 
         <main className="flex-1 px-6 md:px-10 pb-24 md:pb-12 overflow-x-hidden w-full no-scrollbar pt-8">
           <div className="max-w-[1200px] mx-auto">
-            {/* System Announcement Banner - Styled lighter */}
+            {/* System Announcement Banner - Styled lighter with glass */}
             {recentBroadcast && showBroadcast && (
-              <div className="mb-8 bg-white dark:bg-brand-darksurface p-6 rounded-[1.5rem] shadow-soft relative overflow-hidden animate-slide-up border-l-4 border-brand-jungle dark:border-brand-pistachio flex items-start gap-5">
+              <div className="mb-8 bg-white/70 dark:bg-brand-darksurface/70 backdrop-blur-md p-6 rounded-[1.5rem] shadow-soft relative overflow-hidden animate-slide-up border-l-4 border-brand-jungle dark:border-brand-pistachio flex items-start gap-5 ring-1 ring-black/5 dark:ring-white/10">
                  <div className="w-10 h-10 bg-brand-jungle dark:bg-brand-pistachio text-white dark:text-brand-jungle rounded-xl flex items-center justify-center shrink-0 shadow-sm animate-pulse">
                     <Megaphone size={20} />
                  </div>
@@ -250,4 +266,3 @@ export const Layout: React.FC<LayoutProps> = ({
     </div>
   );
 };
-    

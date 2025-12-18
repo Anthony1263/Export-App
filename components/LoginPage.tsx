@@ -148,7 +148,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
                  <button onClick={() => setView('onboarding')} className="flex items-center gap-2 text-white/40 hover:text-white transition-colors mb-12 text-[10px] font-black uppercase tracking-[0.3em] group w-fit">
                     <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" /> Introduction
                  </button>
-                 <div className="w-20 h-20 bg-white/10 rounded-3xl flex items-center justify-center mb-10 shadow-2xl p-3 border border-white/20 transform -rotate-3 transition-all">
+                 <div className="w-20 h-20 bg-white/10 rounded-3xl flex items-center justify-center mb-10 shadow-2xl p-3 border border-white/20 transform -rotate-3 transition-all backdrop-blur-sm">
                     <GepaLogo size={64} />
                  </div>
                  <h1 className="text-5xl md:text-7xl font-black leading-[0.9] mb-6 tracking-tighter uppercase transition-colors">Authorized<br/>Access.</h1>
@@ -165,7 +165,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
             {/* Form Side */}
             <div className="flex-1 flex flex-col justify-center items-center p-6 md:p-12 lg:p-24 bg-[#F0F4F1] dark:bg-brand-darkbg relative transition-colors duration-500">
                <div className="w-full max-w-sm space-y-10 pt-8 md:pt-0 relative z-10">
-                  <div className="bg-white dark:bg-brand-darksurface p-10 rounded-[2rem] shadow-brand space-y-10 border border-brand-lightgray/20 dark:border-white/10 transition-all duration-300">
+                  <div className="bg-white/70 dark:bg-brand-darksurface/70 backdrop-blur-xl p-10 rounded-[2rem] shadow-brand space-y-10 border border-brand-lightgray/20 dark:border-white/10 transition-all duration-300">
                       <div className="text-center md:text-left">
                         <h3 className="text-3xl font-black text-brand-jungle dark:text-white mb-2 uppercase tracking-tight transition-colors">Secure Login</h3>
                         <p className="text-brand-hooker dark:text-brand-lightgray/40 text-xs font-black uppercase tracking-widest opacity-60 transition-colors">GEPA Portal</p>

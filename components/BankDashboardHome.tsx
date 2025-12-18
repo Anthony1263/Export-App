@@ -103,21 +103,22 @@ export const BankDashboardHome: React.FC<BankDashboardProps> = ({ onNavigate, us
               <button onClick={() => onNavigate('ifcms')} className="text-[10px] font-black uppercase tracking-[0.3em] text-brand-jungle dark:text-brand-pistachio hover:underline border-2 border-brand-jungle/10 dark:border-brand-pistachio/20 px-6 py-3 rounded-2xl hover:bg-brand-jungle/5 dark:hover:bg-brand-pistachio/5 transition-all">View All</button>
             </div>
             
-            <div className="overflow-x-auto no-scrollbar">
+            {/* Desktop Table View - Hidden on mobile */}
+            <div className="hidden md:block overflow-x-auto no-scrollbar">
               <table className="w-full text-left">
                 <thead className="bg-brand-lightgray/5 dark:bg-white/5 text-brand-hooker dark:text-brand-lightgray/60 text-[10px] font-black uppercase tracking-[0.4em] border-b border-brand-lightgray/10 dark:border-white/5 transition-colors">
                   <tr>
-                    <th className="px-10 py-6">Loan ID</th>
-                    <th className="px-10 py-6">Exporter</th>
-                    <th className="px-10 py-6">Amount</th>
-                    <th className="px-10 py-6">Date</th>
-                    <th className="px-10 py-6 text-right">Action</th>
+                    <th className="px-6 md:px-10 py-6">Loan ID</th>
+                    <th className="px-6 md:px-10 py-6">Exporter</th>
+                    <th className="px-6 md:px-10 py-6">Amount</th>
+                    <th className="px-6 md:px-10 py-6">Date</th>
+                    <th className="px-6 md:px-10 py-6 text-right">Action</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-brand-lightgray/5 dark:divide-white/5">
                   {pendingLoans.length > 0 ? pendingLoans.slice(0, 5).map(loan => (
                     <tr key={loan.id} className="hover:bg-brand-lightgray/5 dark:hover:bg-white/5 cursor-pointer transition-colors group" onClick={() => onNavigate('ifcms')}>
-                      <td className="px-10 py-8">
+                      <td className="px-6 md:px-10 py-8">
                          <div className="flex items-center gap-3">
                             <div className="p-2 rounded-lg bg-white dark:bg-white/10 border border-brand-lightgray/20 dark:border-white/10 text-brand-jungle dark:text-brand-pistachio">
                                <FileText size={16} />
@@ -125,22 +126,22 @@ export const BankDashboardHome: React.FC<BankDashboardProps> = ({ onNavigate, us
                             <span className="font-mono text-[11px] font-black text-brand-hooker dark:text-brand-lightgray/40 group-hover:text-brand-jungle dark:group-hover:text-white transition-colors tracking-widest">{loan.id}</span>
                          </div>
                       </td>
-                      <td className="px-10 py-8">
+                      <td className="px-6 md:px-10 py-8">
                         <div className="text-sm font-black text-brand-jungle dark:text-white uppercase tracking-tight group-hover:underline transition-colors">
                           {loan.userId === 'u1' ? 'Kwaku Exports Ltd' : 'Cocoa Processing Co'}
                         </div>
                         <div className="text-[9px] text-brand-hooker dark:text-brand-lightgray/40 font-bold uppercase tracking-widest mt-1 opacity-60">Registered Exporter</div>
                       </td>
-                      <td className="px-10 py-8">
+                      <td className="px-6 md:px-10 py-8">
                          <div className="text-sm font-black text-brand-jungle dark:text-white tracking-tighter transition-colors">GH₵ {loan.amount.toLocaleString()}</div>
                          <div className="text-[9px] text-brand-hooker dark:text-brand-lightgray/60 font-bold uppercase tracking-widest mt-1">{loan.type}</div>
                       </td>
-                      <td className="px-10 py-8">
+                      <td className="px-6 md:px-10 py-8">
                          <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-lg border text-[9px] font-black uppercase tracking-widest ${getSLAColor(loan.date)}`}>
                             <Clock size={12} /> Pending
                          </div>
                       </td>
-                      <td className="px-10 py-8 text-right">
+                      <td className="px-6 md:px-10 py-8 text-right">
                         <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest bg-brand-lightgray/10 dark:bg-white/5 text-brand-jungle dark:text-white border border-brand-lightgray/20 dark:border-white/10 shadow-sm group-hover:bg-brand-jungle dark:group-hover:bg-brand-pistachio group-hover:text-white dark:group-hover:text-brand-jungle transition-all">
                           Review <ArrowRight size={14} />
                         </span>
@@ -159,11 +160,50 @@ export const BankDashboardHome: React.FC<BankDashboardProps> = ({ onNavigate, us
                 </tbody>
               </table>
             </div>
+
+            {/* Mobile Card View - Visible only on mobile */}
+            <div className="md:hidden p-6 space-y-4">
+              {pendingLoans.length > 0 ? pendingLoans.slice(0, 5).map(loan => (
+                 <div key={loan.id} onClick={() => onNavigate('ifcms')} className="bg-brand-lightgray/5 dark:bg-white/5 border border-brand-lightgray/10 dark:border-white/5 p-5 rounded-2xl space-y-4 active:scale-[0.98] transition-transform">
+                    <div className="flex justify-between items-start">
+                       <div className="flex items-center gap-3">
+                          <div className="p-2 rounded-lg bg-white dark:bg-white/10 border border-brand-lightgray/20 dark:border-white/10 text-brand-jungle dark:text-brand-pistachio">
+                             <FileText size={16} />
+                          </div>
+                          <div>
+                             <span className="block font-mono text-[10px] font-black text-brand-hooker dark:text-brand-lightgray/40 tracking-widest">{loan.id}</span>
+                             <div className={`inline-flex items-center gap-1 text-[9px] font-black uppercase tracking-widest ${getSLAColor(loan.date).split(' ')[0]}`}>
+                                <Clock size={10} /> Pending
+                             </div>
+                          </div>
+                       </div>
+                       <div className="text-right">
+                          <div className="text-sm font-black text-brand-jungle dark:text-white tracking-tighter">GH₵ {(loan.amount/1000).toFixed(1)}k</div>
+                          <div className="text-[9px] font-bold text-brand-hooker dark:text-brand-lightgray/60 uppercase">{loan.type}</div>
+                       </div>
+                    </div>
+                    
+                    <div>
+                       <div className="text-xs font-black text-brand-jungle dark:text-white uppercase tracking-tight">{loan.userId === 'u1' ? 'Kwaku Exports Ltd' : 'Cocoa Processing Co'}</div>
+                       <div className="text-[9px] text-brand-hooker dark:text-brand-lightgray/40 font-bold uppercase tracking-widest mt-1 opacity-60">Registered Exporter</div>
+                    </div>
+
+                    <button className="w-full py-3 rounded-xl text-[10px] font-black uppercase tracking-widest bg-brand-lightgray/10 dark:bg-white/5 text-brand-jungle dark:text-white border border-brand-lightgray/20 dark:border-white/10 shadow-sm flex items-center justify-center gap-2">
+                       Review Application <ArrowRight size={14} />
+                    </button>
+                 </div>
+              )) : (
+                 <div className="text-center py-10 opacity-50">
+                    <ShieldCheck size={48} className="mx-auto mb-2 text-brand-lightgray/30 dark:text-white/10" />
+                    <p className="text-[10px] font-black uppercase tracking-widest text-brand-hooker dark:text-brand-lightgray/40">No pending items</p>
+                 </div>
+              )}
+            </div>
           </div>
         </>
       ) : (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-           <div className="bg-white dark:bg-brand-darksurface p-12 rounded-[3.5rem] border border-brand-lightgray/20 dark:border-white/10 shadow-soft transition-colors">
+           <div className="bg-white dark:bg-brand-darksurface p-6 md:p-12 rounded-[3.5rem] border border-brand-lightgray/20 dark:border-white/10 shadow-soft transition-colors">
              <h3 className="font-black text-xl text-brand-jungle dark:text-white uppercase tracking-tight mb-10 flex items-center gap-4 transition-colors">
                <PieIcon size={28} className="text-brand-pistachio" /> Portfolio Risk Distribution
              </h3>
@@ -196,7 +236,7 @@ export const BankDashboardHome: React.FC<BankDashboardProps> = ({ onNavigate, us
              </div>
            </div>
 
-           <div className="bg-white dark:bg-brand-darksurface p-12 rounded-[3.5rem] border border-brand-lightgray/20 dark:border-white/10 shadow-soft transition-colors flex flex-col">
+           <div className="bg-white dark:bg-brand-darksurface p-6 md:p-12 rounded-[3.5rem] border border-brand-lightgray/20 dark:border-white/10 shadow-soft transition-colors flex flex-col">
              <h3 className="font-black text-xl text-brand-jungle dark:text-white uppercase tracking-tight mb-10 flex items-center gap-4 transition-colors">
                <BarChart3 size={28} className="text-brand-pewter" /> Sector Exposure
              </h3>
