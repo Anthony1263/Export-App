@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GEPA Export Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      // Apply theme before page renders to prevent eye-strain from flickering
+      if (localStorage.getItem('gepa_theme') === 'dark' || (!('gepa_theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                jungle: '#122B1D',      // Dark Jungle Green (Primary Brand)
+                hooker: '#537E72',      // William Hooker's Green
+                pistachio: '#9CC97F',   // Pistachio
+                lightgray: '#CDDECB',   // Light Gray
+                pewter: '#90B7BF',      // Pewter Blue
+                primary: '#122B1D',
+                secondary: '#537E72',
+                accent: '#9CC97F',
+                surface: '#CDDECB',
+                alt: '#90B7BF',
+                // Updated Dark Mode Palette - Softer & More Neutral
+                darkbg: '#0D1110',      // Soft Black-Green
+                darksurface: '#171C1A'  // Deep Charcoal with subtle green hint
+              }
+            },
+            fontFamily: {
+              sans: ['Inter', 'system-ui', 'sans-serif'],
+            },
+            animation: {
+              'infinite-scroll': 'infinite-scroll 25s linear infinite',
+            },
+            keyframes: {
+              'infinite-scroll': {
+                from: { transform: 'translateX(0)' },
+                to: { transform: 'translateX(-100%)' },
+              }
+            },
+            boxShadow: {
+              'soft': '0 4px 20px 0 rgba(18, 43, 29, 0.05)',
+              'brand': '0 10px 25px -5px rgba(18, 43, 29, 0.25)',
+              'pistachio-glow': '0 10px 25px -5px rgba(156, 201, 127, 0.3)',
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+      
+      ::-webkit-scrollbar { width: 6px; height: 6px; }
+      ::-webkit-scrollbar-track { background: transparent; }
+      ::-webkit-scrollbar-thumb { background: rgba(18, 43, 29, 0.2); border-radius: 10px; }
+      ::-webkit-scrollbar-thumb:hover { background: #122B1D; }
+
+      .dark ::-webkit-scrollbar-thumb { background: rgba(156, 201, 127, 0.2); }
+      .dark ::-webkit-scrollbar-thumb:hover { background: #9CC97F; }
+
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+      @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+      .animate-fade-in { animation: fadeIn 0.3s ease-out forwards; }
+      
+      @keyframes modalIn { 
+        from { transform: scale(0.9) translateY(20px); opacity: 0; } 
+        to { transform: scale(1) translateY(0); opacity: 1; } 
+      }
+      .animate-modal-in { animation: modalIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+
+      body { background-color: #F0F4F1; transition: background-color 0.3s ease; }
+      .dark body { background-color: #0D1110; }
+
+      @media print {
+        body { background: white !important; }
+        .print\:hidden { display: none !important; }
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.3",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react-dom": "https://esm.sh/react-dom@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "lucide-react": "https://esm.sh/lucide-react@^0.561.0",
+    "recharts": "https://esm.sh/recharts@^3.6.0",
+    "@google/genai": "https://esm.sh/@google/genai@^1.34.0"
+  }
+}
+</script>
+</head>
+  <body class="antialiased font-sans">
+    <div id="root"></div>
+  </body>
+</html>
